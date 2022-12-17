@@ -35,11 +35,10 @@ body{
     text-align: justify;
     margin: 50px 0 30px 0;
 }
-.heading{
+h1{
     text-align: center;
-    font-weight: 800;
-    color:#ffff;
-    margin-top: 40px;
+    font-weight: 600;
+    color: rgb(35, 46, 54);
 }
 textarea{
     resize: none;
