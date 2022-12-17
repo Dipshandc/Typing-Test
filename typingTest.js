@@ -35,6 +35,11 @@ function startTest() {
     timer = "";
     document.getElementById("stop-test").style.display = "block"
     timerStart()
+     userInput.addEventListener("keydown",function(e){
+        if(e.code==="Enter"){
+            displayResult()
+        }
+    })
 }
 
 //Comparing user input with quote
