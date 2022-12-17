@@ -112,10 +112,10 @@ function displayTimer() {
 
     timerRef.innerHTML = `${m} : ${s}`;
     if (m = 0) {
-        timeTaken = s/60;
+        timeTaken = s/100;
     }
     else {
-        timeTaken = m+s/60;
+        timeTaken = (m*60+s)/100;
     }
     document.getElementById("wpm").innerText = (userInput.value.length/5/timeTaken).toFixed(2)+"wpm"
     document.getElementById("accuracy").innerText = Math.round(((userInput.value.length-mistakes)/userInput.value.length)*100)+"%"
