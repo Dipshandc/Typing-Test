@@ -1,5 +1,5 @@
 //Random Quote API URL
-const quoteApiUrl = "https://api.quotable.io/random?minLength=150&maxLength=170";
+const quoteApiUrl = "https://api.quotable.io/random?minLength=100&maxLength=120";
 const quoteSection = document.getElementById("quote");
 const userInput = document.getElementById("quote-input");
 
@@ -25,7 +25,6 @@ window.onload = () => {
     userInput.value = "";
     document.getElementById("start-test").style.display = "none";
     document.getElementById("stop-test").style.display = "none";
-    // userInput.disabled = true;
     newQuote();
 }
 
@@ -35,8 +34,8 @@ function startTest() {
     timer = "";
     document.getElementById("stop-test").style.display = "block"
     timerStart()
-     userInput.addEventListener("keydown",function(e){
-        if(e.code==="Enter"){
+    userInput.addEventListener("keydown", function (e) {
+        if (e.code === "Enter") {
             displayResult()
         }
     })
@@ -83,6 +82,7 @@ function displayResult() {
     document.querySelector(".result").style.display = "block"
     document.getElementById("stop-test").style.display = "none"
     clearInterval(int);
+    document.getElementById("start-test").style.display = "block"
     userInput.disabled = true;
 }
 
@@ -117,12 +117,27 @@ function displayTimer() {
 
     timerRef.innerHTML = `${m} : ${s}`;
     if (m = 0) {
-        timeTaken = s/60;
+        timeTaken = s / 60;
     }
     else {
-        timeTaken = m+s/60;
+        timeTaken = m + s / 60;
     }
-    document.getElementById("wpm").innerText = (userInput.value.length/5/timeTaken).toFixed(2)+"wpm"
-    document.getElementById("accuracy").innerText = Math.round(((userInput.value.length-mistakes)/userInput.value.length)*100)+"%"
+    document.getElementById("wpm").innerText = (userInput.value.length / 5 / timeTaken).toFixed(2) + "wpm"
+    document.getElementById("accuracy").innerText = Math.round(((userInput.value.length - mistakes) / userInput.value.length) * 100) + "%"
 }
 
+//New test function
+
+function newTest() {
+    userInput.value = "";
+    document.getElementById("start-test").style.display = "none";
+    document.getElementById("stop-test").style.display = "none";
+    quoteSection.innerHTML = ""
+    timerRef.innerHTML = "00:00"
+    document.querySelector(".result").style.display = "none"
+    newQuote();
+    userInput.disabled = false;
+    mistakes = 0;
+    [milliseconds, seconds, minutes, hours] = [0, 0, 0, 0]
+    document.getElementById("mistakes").innerHTML = mistakes
+}
